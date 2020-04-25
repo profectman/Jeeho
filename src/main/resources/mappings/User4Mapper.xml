@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeeho.common.persistence.User4Mapper">
+
+    <resultMap id="selectUser4" type="com.jeeho.common.persistence.User4">
+        <result typeHandler="com.jeeho.common.persistence.jdbcTypes.CustomDateTypeHandler" column="regTime" javaType="java.util.Date"
+                jdbcType="VARCHAR"
+                property="regTime"/>
+    </resultMap>
+
+    <select id="getUser4ById" resultMap="selectUser4">
+        select id,username,regTime,password from dsm.user4 where id = #{id,javaType=int}
+    </select>
+
+    <insert id="insertUser4" >
+        insert into dsm.user4 (username,password,regTime) values (#{userName},#{passWord},#{regTime,typeHandler=com.jeeho.common.persistence.jdbcTypes.CustomDateTypeHandler});
+    </insert>
+
+</mapper>

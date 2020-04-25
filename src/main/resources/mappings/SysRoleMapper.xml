@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jeeho.common.persistence.SysRoleMapper">
+
+        <sql id="rowColumns">
+            OFFICE_ID,
+            NAME,
+            ENNAME,
+            ROLE_TYPE,
+            DATA_SCOPE,
+            IS_SYS,
+            USEABLE,
+            CREATE_BY,
+            CREATE_DATE,
+            UPDATE_BY,
+            UPDATE_DATE,
+            REMARKS,
+            DEL_FLAG
+        </sql>
+
+        <select id="getSysRoleName" parameterType="java.lang.String" resultType="java.lang.String">
+            select
+            name
+            from dsm.sys_role
+            where ID=#{id}
+        </select>
+
+        <select id="getSysRole" parameterType="java.lang.String" resultType="com.jeeho.common.persistence.SysRole">
+            select
+            <include refid="rowColumns"/>
+            from dsm.sys_role
+            where ID=#{id}
+        </select>
+
+        <update id="updateSysRole" parameterType="com.jeeho.common.persistence.SysRole">
+            update dsm.sys_role
+            set update_date = now()
+            where ID=#{sysRole.id}
+        </update>
+
+</mapper>

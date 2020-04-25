@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+    <classPathEntry location="F:\StudyWarehouse\Jeeho\gen\mysql-connector-java-5.1.37-bin.jar" />
+
+    <context id="MysqlTables" targetRuntime="MyBatis3">
+        <!--如何连接到数据库-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/mall"
+                        userId="root"
+                        password="123456">
+        </jdbcConnection>
+        <!--不强制使用BigDecimal-->
+        <javaTypeResolver >
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+        <!--表对应的模型对象-->
+        <javaModelGenerator targetPackage="com.jeeho.common.persistence.pojo" targetProject="F:\StudyWarehouse\Jeeho\src">
+            <property name="enableSubPackages" value="true" />
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!--mybatis生成操作数据库表的xml文件-->
+        <sqlMapGenerator  targetPackage="com.jeeho.common.persistence.mapper" targetProject="F:\StudyWarehouse\Jeeho\src\main\resources\mappings">
+            <property name="enableSubPackages" value="true" />
+        </sqlMapGenerator>
+        <!--mybatis生成的操作数据库表的dao接口文件-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.jeeho.common.persistence.dao"  targetProject="F:\StudyWarehouse\Jeeho\src">
+            <property name="enableSubPackages" value="true" />
+        </javaClientGenerator>
+
+        <table tableName="mmall_user" domainObjectName="User" >
+            <!--<property name="useActualColumnNames" value="true"/>-->
+            <!--<generatedKey column="ID" sqlStatement="MYSQL" identity="true" />-->
+            <!--<columnOverride column="DATE_FIELD" property="startDate" />-->
+            <!--<ignoreColumn column="FRED" />  &lt;!&ndash;fred列将被忽视&ndash;&gt;-->
+            <!--<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" /> &lt;!&ndash;Override为覆盖&ndash;&gt;-->
+        </table>
+        <table tableName="mmall_cart" domainObjectName="Cart" ></table>
+        <table tableName="mmall_category" domainObjectName="Category" ></table>
+        <table tableName="mmall_order" domainObjectName="Order" ></table>
+        <table tableName="mmall_order_item" domainObjectName="OrderItem" ></table>
+        <table tableName="mmall_pay_info" domainObjectName="PayInfo" ></table>
+        <table tableName="mmall_product" domainObjectName="Product" ></table>
+        <table tableName="mmall_shipping" domainObjectName="Shipping" ></table>
+    </context>
+</generatorConfiguration>
